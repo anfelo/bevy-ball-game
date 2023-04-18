@@ -16,13 +16,11 @@ impl Plugin for ScorePlugin {
             .init_resource::<HighScores>()
             // On Enter State
             .add_system(insert_score.in_schedule(OnEnter(AppState::Game)))
-
             // Systems
             .add_system(update_score.run_if(in_state(AppState::Game)))
             .add_system(update_high_scores)
             .add_system(high_scores_updated)
-
-        // On Exit State
-        .add_system(remove_score.in_schedule(OnExit(AppState::Game)));
+            // On Exit State
+            .add_system(remove_score.in_schedule(OnExit(AppState::Game)));
     }
 }
